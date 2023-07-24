@@ -1,5 +1,12 @@
 body {
-  font-family: "ABeeZee", sans-serif;
+  font-family: "Playfair Display", serif;
+}
+
+/* ------- Search for City ------- */
+.container {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 /* ------- Footer ------- */
