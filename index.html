@@ -26,8 +26,8 @@
     </header>
 
     <div class="container d-lg-flex">
-      <!-- Column 1: Cities -->
-      <nav class="col-3 m-2 bg-light">
+      <!-- Side Navigation-->
+      <nav class="col-3 m-2 bg-light" id="search-bar">
         <!-- Search for City -->
         <!-- Copied from Week 6 Mini-Project index.html. May need to edit later -->
         <form>
@@ -61,25 +61,33 @@
         <!-- Show Past Searches -->
         <div class="border-top border-secondary" id="past-searches">
           <!-- Could do this in JS. -->
+          <div class="card">
+            <ul id="past-city" class="list-city">
+              <li>Test</li>
+            </ul>
+          </div>
         </div>
       </nav>
 
       <!-- City Forecast -->
       <!-- Today's Weather -->
-      <div class="col-9">
-        <div class="card justify-content-start" id="current-temp" style="width: 50rem; height:auto;">
-          <div class="card-body"></div>
-            <h2 class="card-title">City Date</h2>
-            <p class="text-top">Temp:</p>
-            <p class="text-top">Wind:</p>
-            <p class="text-top">Humidity:</p>
-          </div>
+      <div class="col-8 m-2">
+        <div class="card justify-content-start" id="current-temp">
+          <h2 class="card-title">City Date</h2>
+          <p class="text-top">Temp:</p>
+          <p class="text-top">Wind:</p>
+          <p class="text-top">Humidity:</p>
         </div>
       </div>
 
       <!-- 5 Day Predictions -->
       <div class="row">
-        <div class="card d-flex flex-row flex-wrap justify-content-between" id="future-temps">Testing</div>
+        <div
+          class="d-flex flex-row flex-wrap justify-content-between"
+          id="future-temps"
+        >
+          <h3>5-Day Forecast</h3>
+        </div>
       </div>
     </div>
 
