@@ -2,26 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Ball</title>
-    <!-- ABeeZee -->
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Dancing+Script&display=swap"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
     />
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
 
   <body>
-    <header>
-      <h1 class="top-text">The Weather Today</h1>
+    <header class="row text-center bg-primary text-white">
+      <h1>Weather Today</h1>
     </header>
 
-    <div class="container"></div>
+    <div class="container">
+      <!-- Column 1: Cities -->
+      <div class="col-3 m-2 bg-light">
+        <!-- Search for City -->
+        <!-- Copied from Week 6 Mini-Project index.html. May need to edit later -->
+        <form>
+          <label class="text-dark">Search for City:</label>
+          <input
+            class="form-control my-2 text-primary"
+            type="search"
+            placeholder="Search"
+            id="city-input"
+          />
+          <button
+            class="btn btn-outline-light bg-primary my-2"
+            style="width: 100%"
+            type="submit"
+            id="search-button"
+          >
+            SEARCH
+          </button>
+        </form>
 
-    <footer>
+        <!-- Clear Search History -->
+        <button
+          class="btn btn-outline-light bg-primary my-2"
+          style="width: 100%"
+          type="submit"
+          id="clear-button"
+        >
+          CLEAR HISTORY
+        </button>
+
+        <!-- Show Past Searches -->
+        <div class="border-top border-secondary" id="past-searches"></div>
+      </div>
+
+      <!-- City Forecast -->
+      <div class="col-9">
+        <!-- Today's Weather -->
+        <div class="row" id="current-temp"></div>
+
+        <!-- 5 Day Predictions -->
+        <div class="row" id="future-temps"></div>
+        <div
+          class="d-flex flex-row flex-wrap justify-content-between"
+          id="future-temps"
+        ></div>
+        <!-- May need to edit the flex but right now this should cover everything -->
+      </div>
+    </div>
+
+    <footer class="text-center">
       <p>Made in 2023</p>
     </footer>
 
