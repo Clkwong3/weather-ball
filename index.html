@@ -25,13 +25,13 @@
       <h1>Weather Today</h1>
     </header>
 
-    <div class="container">
+    <div class="container d-lg-flex">
       <!-- Column 1: Cities -->
-      <div class="col-3 m-2 bg-light">
+      <nav class="col-3 m-2 bg-light">
         <!-- Search for City -->
         <!-- Copied from Week 6 Mini-Project index.html. May need to edit later -->
         <form>
-          <label class="text-dark">Search for City:</label>
+          <label class="text-dark">Search by City:</label>
           <input
             class="form-control my-2 text-primary"
             type="search"
@@ -59,21 +59,27 @@
         </button>
 
         <!-- Show Past Searches -->
-        <div class="border-top border-secondary" id="past-searches"></div>
-      </div>
+        <div class="border-top border-secondary" id="past-searches">
+          <!-- Could do this in JS. -->
+        </div>
+      </nav>
 
       <!-- City Forecast -->
+      <!-- Today's Weather -->
       <div class="col-9">
-        <!-- Today's Weather -->
-        <div class="row" id="current-temp"></div>
+        <div class="card justify-content-start" id="current-temp" style="width: 50rem; height:auto;">
+          <div class="card-body"></div>
+            <h2 class="card-title">City Date</h2>
+            <p class="text-top">Temp:</p>
+            <p class="text-top">Wind:</p>
+            <p class="text-top">Humidity:</p>
+          </div>
+        </div>
+      </div>
 
-        <!-- 5 Day Predictions -->
-        <div class="row" id="future-temps"></div>
-        <div
-          class="d-flex flex-row flex-wrap justify-content-between"
-          id="future-temps"
-        ></div>
-        <!-- May need to edit the flex but right now this should cover everything -->
+      <!-- 5 Day Predictions -->
+      <div class="row">
+        <div class="card d-flex flex-row flex-wrap justify-content-between" id="future-temps">Testing</div>
       </div>
     </div>
 
