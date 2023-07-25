@@ -10,6 +10,7 @@ function getLocation(cityName) {
 
 function weatherInfo(data) {
   //   replace url with geo code
+  //   http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
   var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIkey}`;
 
   // Get Data From URL Provided
