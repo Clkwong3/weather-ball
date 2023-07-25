@@ -2,6 +2,7 @@ var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 
 var currentCity;
 
+// May need 2 different API because of the lat and lon
 // functions needs EventListener
 function getLocation(cityName) {
   // Navigation
