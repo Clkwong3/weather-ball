@@ -29,5 +29,14 @@ function weatherInfo(data) {
       var todayDate = document.createElement("<span>");
       todayDate.textContent(currentCity);
       cityName.append(cityDate);
+
+      // Weather Icons
+      var cityIcon = data.currrent.weather[0].icon;
+      var weatherIcon = document.createElement("<img>");
+      weatherIcon.attributeStyleMap(
+        "src",
+        "http://openweathermap.org/img/wn/" + cityIcon + ".png"
+      );
+      cityName.append(weatherIcon);
     });
 }
