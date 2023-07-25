@@ -45,5 +45,19 @@ function weatherInfo(data) {
 
       todayTemp.textContent("Temp: ", cityTemp);
       today.append(todayTemp);
+
+      // Current Wind
+      var cityWind = data.current.wind;
+      var todayWind = getElementById("<p>");
+
+      todayWind.textContent("Wind: ", cityWind);
+      today.append(todayWind);
+
+      // Current Humidity
+      var cityHumidity = data.current.Humidity;
+      var todayHumidity = getElementById("<p>");
+
+      todayHumidity.textContent("Humidity: ", cityHumidity);
+      today.append(todayHumidity);
     });
 }
