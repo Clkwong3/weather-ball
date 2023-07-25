@@ -2,11 +2,15 @@ var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 
 var currentCity;
 
+// functions needs EventListener
+function getLocation(cityName) {
+  // Navigation
+  // User input -> array -> json.stringify
+}
+
 function weatherInfo(data) {
-  var url =
-    "https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${" +
-    APIkey +
-    "}";
+  //   replace url with geo code
+  var url = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=minutely,hourly,alerts&units=metric&appid=${APIkey}`;
 
   // Get Data From URL Provided
   fetch(url)
@@ -15,7 +19,7 @@ function weatherInfo(data) {
     })
     .then(function (data) {
       // Current Weather
-      var today = document.getElementById("current-temp");
+      var today = document.createElement("current-temp");
 
       // City Name
       var cityName = document.createElement("<h2>");
@@ -41,23 +45,24 @@ function weatherInfo(data) {
 
       // Current Temp
       var cityTemp = data.current.temp;
-      var todayTemp = getElementById("<p>");
+      var todayTemp = getElementById("<span>");
 
       todayTemp.textContent("Temp: ", cityTemp);
       today.append(todayTemp);
 
       // Current Wind
       var cityWind = data.current.wind;
-      var todayWind = getElementById("<p>");
+      var todayWind = getElementById("<span>");
 
       todayWind.textContent("Wind: ", cityWind);
       today.append(todayWind);
 
       // Current Humidity
       var cityHumidity = data.current.Humidity;
-      var todayHumidity = getElementById("<p>");
+      var todayHumidity = getElementById("<span>");
 
       todayHumidity.textContent("Humidity: ", cityHumidity);
       today.append(todayHumidity);
     });
+  return;
 }

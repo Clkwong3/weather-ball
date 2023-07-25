@@ -61,9 +61,12 @@
         <!-- Show Past Searches -->
         <div class="border-top border-secondary" id="past-searches">
           <!-- Could do this in JS. -->
-          <div class="card">
-            <ul id="past-city" class="list-city">
-              <li>Test</li>
+          <div class="card col-3">
+            <section id="past-city" class="list-city">
+              <button data-city="user-input">Reno</button>
+              <button data-city="user-input">Tampa</button>
+              <button data-city="user-input">Tusla</button>
+              <button data-city="user-input">Milwaukee</button>
             </ul>
           </div>
         </div>
@@ -72,11 +75,11 @@
       <!-- City Forecast -->
       <!-- Today's Weather -->
       <div class="col-8 m-2">
-        <div class="card justify-content-start" id="current-temp">
-          <!-- <h2 class="card-title">City Date</h2>
-          <p class="text-top">Temp:</p>
-          <p class="text-top">Wind:</p>
-          <p class="text-top">Humidity:</p> -->
+        <div class="card justify-content-start">
+          <h2 class="card-title">City Date</h2> <!-- Add <span> and <img>-->
+          <p class="text-top">Temp: <span id="city-temp">54</span></p>
+          <p class="text-top">Wind: <span id="city-wind">9</span></p>
+          <p class="text-top">Humidity: <span id="city-humidity">12</span></p>
         </div>
       </div>
 
