@@ -38,5 +38,12 @@ function weatherInfo(data) {
         "http://openweathermap.org/img/wn/" + cityIcon + ".png"
       );
       cityName.append(weatherIcon);
+
+      // Current Temp
+      var cityTemp = data.current.temp;
+      var todayTemp = getElementById("<p>");
+
+      todayTemp.textContent("Temp: ", cityTemp);
+      today.append(todayTemp);
     });
 }
