@@ -16,5 +16,10 @@ function weatherInfo(data) {
     .then(function (data) {
       // Current Weather
       var today = document.getElementById("current-temp");
+
+      // City Name
+      var cityName = document.createElement("<h2>");
+      cityName.textContent(currentCity);
+      today.append(cityName);
     });
 }
