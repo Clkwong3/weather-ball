@@ -21,5 +21,13 @@ function weatherInfo(data) {
       var cityName = document.createElement("<h2>");
       cityName.textContent(currentCity);
       today.append(cityName);
+
+      // Current Date
+      var cityDate = data.current.dt;
+      currentCity = dayjs(cityDate).format("MMMM D, YYYY");
+
+      var todayDate = document.createElement("<span>");
+      todayDate.textContent(currentCity);
+      cityName.append(cityDate);
     });
 }
