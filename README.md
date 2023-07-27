@@ -12,4 +12,4 @@ For each city you plan to visit, look at the weather forecast in the weather app
 
 ## Link to Site
 
-No installation required. Click [here]()!
+No installation required. Click [here](https://clkwong3.github.io/weather-ball/)!
