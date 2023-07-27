@@ -1,14 +1,14 @@
 var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 
 // DOM EL
-var userInput = document.getElementById("city-input");
+var userInput = document.getElementById("user-input");
 var searchBtn = document.getElementById("search-button");
 var clearBtn = document.getElementById("clear-button");
 var pastSearch = document.getElementById("past-city");
 
-var currentCity;
+var city = [];
 
-// May need 2 different API because of the lat and lon
+// May need 2 different API url because of the lat and lon
 // functions needs EventListener
 // Navigation
 // User input -> array -> json.stringify
@@ -16,7 +16,7 @@ var currentCity;
 // Get City From User
 function handleLocationFormSubmit(event) {
   event.preventDefault();
-  currentCity = userInput.val().trim();
+  var currentCity = userInput.val().trim();
 
   getCity();
   return;

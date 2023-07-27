@@ -2,9 +2,18 @@ body {
   font-family: "Playfair Display", serif;
 }
 
+/* ------- Header ------- */
+.title {
+  padding: 5px;
+  text-align: center;
+  color: white;
+  background-color: #010057;
+}
+
 /* ------- Search for City ------- */
 .container {
   margin: 2%;
+  display: flex;
   font-family: sans-serif;
   font-size: 20px;
   font-weight: 600;

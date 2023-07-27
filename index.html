@@ -21,11 +21,11 @@
   </head>
 
   <body>
-    <header class="row p-2 text-center bg-primary text-white">
+    <header class="title">
       <h1>Weather Today</h1>
     </header>
 
-    <div class="container d-lg-flex">
+    <div class="container">
       <!-- Side Navigation-->
       <nav class="col-3 m-2 bg-light" id="search-bar">
         <!-- Search for City -->
@@ -35,7 +35,7 @@
             class="form-control my-2 text-primary"
             type="search"
             placeholder="City Name"
-            id="city-input"
+            id="user-input"
           />
           <button
             class="btn btn-outline-light bg-primary my-2"
@@ -59,36 +59,58 @@
 
         <!-- Show Past Searches -->
         <div class="border-top border-secondary" id="past-cities">
-          <!-- Could do this in JS. -->
           <div class="card col-3">
-            <section id="past-city" class="list-city">
-              <button data-city="user-input">Reno</button>
-              <button data-city="user-input">Tampa</button>
-              <button data-city="user-input">Tusla</button>
-              <button data-city="user-input">Milwaukee</button>
-            </ul>
+            <section id="past-city" class="list-city"></section>
           </div>
         </div>
       </nav>
 
       <!-- City Forecast -->
-      <!-- Today's Weather -->
       <div class="col-8 m-2">
+        <!-- Today's Weather -->
         <div class="card justify-content-start">
-          <h2 class="card-title">City Date</h2> <!-- Add <span> and <img>-->
-          <p class="text-top">Temp: <span id="city-temp">54</span> °F</p>
-          <p class="text-top">Wind: <span id="city-wind">9</span> MPH</p>
-          <p class="text-top">Humidity: <span id="city-humidity">12</span>%</p>
+          <h2 class="card-title">City Date</h2>
+          <!-- Add <span> and <img>-->
+          <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
+          <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
+          <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
         </div>
-      </div>
 
-      <!-- 5 Day Predictions -->
-      <div class="row">
+        <!-- 5 Day Predictions -->
+        <div class="justify-content-start">
+          <h3>5-Day Forecast</h3>
+        </div>
+        <br />
         <div
           class="d-flex flex-row flex-wrap justify-content-between"
           id="future-temps"
         >
-          <h3>5-Day Forecast</h3>
+          <!-- test -->
+          <section id="day1" class="card">
+            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
+            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
+            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
+          </section>
+          <section id="day1" class="card">
+            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
+            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
+            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
+          </section>
+          <section id="day1" class="card">
+            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
+            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
+            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
+          </section>
+          <section id="day1" class="card">
+            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
+            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
+            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
+          </section>
+          <section id="day1" class="card">
+            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
+            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
+            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
+          </section>
         </div>
       </div>
     </div>
