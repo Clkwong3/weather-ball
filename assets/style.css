@@ -20,6 +20,9 @@ body {
 }
 
 /* ------- Past Searches ------- */
+.card {
+  column-width: auto;
+}
 
 /* ------- Current Day ------- */
 .justify-content-start {
@@ -38,6 +41,17 @@ body {
   font-weight: 800;
 }
 
+/* ------- Predictions ------- */
+.future-blocks {
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex-grow: 1;
+  width: auto;
+}
 /* ------- Footer ------- */
 footer {
   display: flex;
