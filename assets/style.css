@@ -5,9 +5,18 @@ body {
 /* ------- Header ------- */
 .title {
   padding: 5px;
+  background-color: #010057;
+}
+
+h1 {
+  font-size: 50px;
   text-align: center;
   color: white;
-  background-color: #010057;
+}
+
+.weather-icon {
+  column-width: 3;
+  padding: 0;
 }
 
 /* ------- Search for City ------- */
