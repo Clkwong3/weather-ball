@@ -75,7 +75,8 @@
       <div class="col-8 m-2">
         <!-- Today's Weather -->
         <div class="card justify-content-start">
-          <h2 id="card-title">City <span id="date"> Date</span></h2>
+          <h2 id="card-title">City</h2>
+          <p id="date">Date</p>
           <!-- Add <span> and <img>-->
           <p class="text-top">Temp: <span id="current-temp"></span> °F</p>
           <p class="text-top">Wind: <span id="current-wind"></span> MPH</p>
@@ -83,43 +84,11 @@
         </div>
 
         <!-- 5 Day Predictions -->
-        <div class="justify-content-start">
+        <div class="d-flex justify-content-between">
           <h3>5-Day Forecast</h3>
         </div>
         <br />
-        <div class="future-blocks d-flex" id="future-temps">
-          <!-- test -->
-          <section id="day1" class="card">
-            <p id="firstDay">Date</p>
-            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
-            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
-            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
-          </section>
-          <section id="day2" class="card">
-            <p id="secondDay">Date</p>
-            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
-            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
-            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
-          </section>
-          <section id="day3" class="card">
-            <p id="firstDay">Date</p>
-            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
-            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
-            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
-          </section>
-          <section id="day4" class="card">
-            <p id="firstDay">Date</p>
-            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
-            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
-            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
-          </section>
-          <section id="day5" class="card">
-            <p id="firstDay">Date</p>
-            <p class="text-top">Temp: <span id="city-temp"></span> °F</p>
-            <p class="text-top">Wind: <span id="city-wind"></span> MPH</p>
-            <p class="text-top">Humidity: <span id="city-humidity"></span>%</p>
-          </section>
-        </div>
+        <div class="future-blocks" id="future-temps"></div>
       </div>
     </div>
 
@@ -127,12 +96,6 @@
       <p>Made in 2023</p>
     </footer>
 
-    <!-- DAY JS -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-      crossorigin="anonymous"
-    ></script>
     <!-- JavaScript -->
     <script src="assets/script.js"></script>
   </body>

@@ -44,23 +44,17 @@ h1 {
   margin: 5px;
 }
 
-.card-title,
-.h3 {
+.card-title {
   padding-left: 1%;
   font-weight: 800;
 }
 
 /* ------- Predictions ------- */
 .future-blocks {
-  justify-content: space-evenly;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.card {
-  flex-grow: 1;
-  width: auto;
-}
 /* ------- Footer ------- */
 footer {
   display: flex;
