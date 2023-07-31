@@ -3,7 +3,7 @@ var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 // DOM EL
 var userInput = document.getElementById("user-input");
 var searchBtn = document.querySelector("#search-button");
-var clearBtn = document.getElementById("clear-button");
+var clearBtn = document.querySelector("#clear-button");
 var pastSearch = document.getElementById("past-city");
 
 var cityName = document.getElementById("card-title");
@@ -35,14 +35,12 @@ function pastSearches() {
   if (pastCities) {
     const cities = JSON.parse(pastCities);
 
-    pastSearch.innerHTML = "";
+    cities.forEach((userInputData, index) => {
+      const cityBtns = document.createElement("button");
 
-    cities.forEach((city) => {
-      const buttons = document.createElement("button");
-
-      buttons.textContent = city.name;
-      buttons.addEventListener("click", () => handleBtnClick(index));
-      pastSearch.appendChild(buttons);
+      cityBtns.textContent = userInputData.name;
+      cityBtns.addEventListener("click", () => handleBtnClick(index));
+      pastSearch.appendChild(cityBtns);
     });
   }
 }
@@ -51,13 +49,22 @@ function pastSearches() {
 function handleBtnClick(index) {
   const cityRetrieval = localStorage.getItem("userInputData");
 
-  if (cities) {
+  if (cityRetrieval) {
     const cities = JSON.parse(cityRetrieval);
     const currentCity = cities[index];
 
     getCity(currentCity);
   }
 }
+
+// Clear History
+function wipedClean() {
+  localStorage.removeItem("userObjectsData");
+
+  const dataContainer = document.getElementById("dataContainer");
+  dataContainer.innerHTML = "";
+}
+clearBtn.addEventListener("click", wipedClean);
 
 // Fetch Weather Of City From API
 function getCity(currentCity) {
@@ -74,7 +81,6 @@ function getCity(currentCity) {
       return response.json();
     })
     .then(function (data) {
-      // weatherInfo(data);
       // console.log(data);
       showCurrentWeather(data);
       showPrediction(data);
@@ -84,7 +90,7 @@ function getCity(currentCity) {
 
 // Show Current Data From API
 function showCurrentWeather(data) {
-  console.log(data);
+  // console.log(data);
   cityName.textContent = data.city.name;
   date.textContent = data.list[0].dt_txt.substring(0, 10);
   cityTemp.textContent = data.list[0].main.temp;
@@ -96,8 +102,8 @@ function showCurrentWeather(data) {
 function showPrediction(data) {
   for (var i = 0; i <= data.list.length - 1; i = i + 8) {
     // console.log(i);
-    console.log(data.list[i]);
-    console.log(data.list[i].dt_text);
+    // console.log(data.list[i]);
+    // console.log(data.list[i].dt_text);
 
     var html = `<section id="day1" class="card">
     <p class="date">${data.list[i].dt_txt.substring(0, 10)}</p>
