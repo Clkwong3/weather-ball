@@ -32,9 +32,10 @@ function handleSearchFormSubmit(event) {
   } else {
     localStorage.setItem(
       "userInputData",
-      JSON.stringify([{ name: currentCity }]) // why so many?
+      JSON.stringify([{ name: currentCity }])
     );
   }
+  userInput.value = "";
   predictions.innerHTML = "";
 
   pastSearches();
