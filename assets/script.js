@@ -23,14 +23,10 @@ function handleSearchFormSubmit(event) {
 
   if (userInputData) {
     const cities = JSON.parse(userInputData);
+
     if (Array.isArray(cities)) {
       cities.push({ name: currentCity }); // HA!
       localStorage.setItem("userInputData", JSON.stringify(cities));
-    } else {
-      localStorage.setItem(
-        "userInputData",
-        JSON.stringify([{ name: currentCity }])
-      );
     }
   } else {
     localStorage.setItem(
@@ -80,7 +76,6 @@ function handleHistoryClearSubmit(event) {
   event.preventDefault();
 
   localStorage.removeItem("userInputData");
-
   pastSearches();
 }
 clearBtn.addEventListener("click", handleHistoryClearSubmit);
