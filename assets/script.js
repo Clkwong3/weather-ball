@@ -23,7 +23,7 @@ function handleSearchFormSubmit(event) {
 
   if (userInputData) {
     const cities = JSON.parse(userInputData);
-    cities.push({ name: currentCity }); // cities.push is not a function in dev tools
+    cities.push({ name: currentCity }); // Still not a function
     localStorage.setItem("userInputData", JSON.stringify(cities));
   } else {
     localStorage.setItem(
