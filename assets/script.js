@@ -98,20 +98,35 @@ function getCity(currentCity) {
   return;
 }
 
+// Show Date As MMM D, YYYY
+function formatDateLetters(lettersString) {
+  const options = { year: "numeric", month: "short", day: "numeric" };
+
+  return new Date(lettersString).toLocaleDateString(undefined, options);
+}
+
 // Show Current Data From API
 function showCurrentWeather(data) {
   cityName.textContent = data.city.name;
-  date.textContent = data.list[0].dt_txt.substring(0, 10);
+  date.textContent = formatDateLetters(data.list[0].dt_txt.substring(0, 10));
   cityTemp.textContent = data.list[0].main.temp;
   cityWind.textContent = data.list[0].wind.speed;
   cityHumidity.textContent = data.list[0].main.humidity;
+}
+
+// Show Date As MM/DD/YY
+function formatDateNum(numString) {
+  const options = { year: "2-digit", month: "2-digit", day: "2-digit" };
+  return new Date(numString).toLocaleDateString(undefined, options);
 }
 
 // Show Data For The Next 5 Days
 function showPrediction(data) {
   for (var i = 0; i <= data.list.length - 1; i = i + 8) {
     var html = `<section id="5Days" class="card col-3 m-1 d-inline-block bg-info">
-    <p class="date p-2">${data.list[i].dt_txt.substring(0, 10)}</p>
+    <p class="date p-2">${formatDateNum(
+      data.list[i].dt_txt.substring(0, 10)
+    )}</p>
     <p class="text-top">Temp: ${data.list[i].main.temp}°F</p>
     <p class="text-top">Wind: ${data.list[i].wind.speed}MPH</p>
     <p class="text-top">Humidity: ${data.list[i].main.humidity}%</p>
