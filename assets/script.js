@@ -57,7 +57,7 @@ function pastSearches() {
     const cities = JSON.parse(pastCities);
 
     if (Array.isArray(cities)) {
-      cities.reverse;
+      cities.reverse();
 
       cities.forEach((userInputData, index) => {
         const cityBtns = document.createElement("button");
