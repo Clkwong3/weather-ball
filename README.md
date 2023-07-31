@@ -8,7 +8,7 @@ For each city you plan to visit, look at the weather forecast in the weather app
 
 ## Preview
 
-![Full Page Image]()
+![Full Page Image](/assets/images/Users:ECY:bootcamp:Challenges:weather-ball:index.html.png)
 
 ## Link to Site
 
