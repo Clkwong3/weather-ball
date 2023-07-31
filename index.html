@@ -39,7 +39,7 @@
           <label class="text-dark">Search by City:</label>
           <input
             class="form-control my-2 text-primary"
-            type="search"
+            type="text"
             placeholder="City Name"
             id="user-input"
           />
@@ -66,7 +66,9 @@
         <!-- Show Past Searches -->
         <div class="border-top border-secondary" id="past-cities">
           <div class="card">
-            <section id="past-city" class="list-city"></section>
+            <section id="past-city" class="list-city">
+              <ul id="buttons"></ul>
+            </section>
           </div>
         </div>
       </nav>
@@ -76,16 +78,15 @@
         <!-- Today's Weather -->
         <div class="card justify-content-start">
           <h2 id="card-title">City</h2>
-          <p id="date">Date</p>
-          <!-- Add <span> and <img>-->
+          <h3 id="date">Date</h3>
           <p class="text-top">Temp: <span id="current-temp"></span> °F</p>
           <p class="text-top">Wind: <span id="current-wind"></span> MPH</p>
           <p class="text-top">Humidity: <span id="current-humidity"></span>%</p>
         </div>
 
         <!-- 5 Day Predictions -->
-        <div class="d-flex justify-content-between">
-          <h3>5-Day Forecast</h3>
+        <div class="forecast d-flex justify-content-between">
+          <h4>5-Day Forecast</h4>
         </div>
         <br />
         <div class="future-blocks" id="future-temps"></div>

@@ -39,17 +39,23 @@ h1 {
   font-weight: 400;
 }
 
+h2,
+h3 {
+  display: inline;
+  padding: 1%;
+  margin: 5px;
+}
+
 .text-top {
   padding: 1%;
   margin: 5px;
 }
 
-.card-title {
-  padding-left: 1%;
-  font-weight: 800;
+/* ------- Predictions ------- */
+.forecast {
+  margin-left: 4%;
 }
 
-/* ------- Predictions ------- */
 .future-blocks {
   flex-direction: row;
   flex-wrap: wrap;

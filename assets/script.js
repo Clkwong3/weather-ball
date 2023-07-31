@@ -6,50 +6,68 @@ var searchBtn = document.querySelector("#search-button");
 var clearBtn = document.getElementById("clear-button");
 var pastSearch = document.getElementById("past-city");
 
+var cityName = document.getElementById("card-title");
+var date = document.getElementById("date");
 var cityTemp = document.getElementById("current-temp");
 var cityWind = document.getElementById("current-wind");
 var cityHumidity = document.getElementById("current-humidity");
-var cityName = document.getElementById("card-title");
 
 var predictions = document.querySelector("#future-temps");
-
-function getDate() {
-  // Get the Current Date
-  var date = new Date();
-  var currentDate =
-    date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
-  document.getElementById("date").innerHTML = currentDate;
-
-  // Get Prediction Dates
-}
-getDate();
-
-// May need 2 different API url because of the lat and lon
-// functions needs EventListener
-// Navigation
-// User input -> array -> json.stringify
 
 // Get City From User
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   const currentCity = document.querySelector("#user-input").value;
-  console.log(currentCity);
-  // getCity(currentCity);
+  localStorage.setItem("userInputData", currentCity);
+  currentCity.innerHTML = "";
+  predictions.innerHTML = "";
+
   getCity(currentCity);
+  pastSearches();
 }
 searchBtn.addEventListener("click", handleSearchFormSubmit);
 
+// Display Search History
+function pastSearches() {
+  const pastCities = localStorage.getItem("userInputData");
+
+  if (pastCities) {
+    const cities = JSON.parse(pastCities);
+
+    pastSearch.innerHTML = "";
+
+    cities.forEach((city) => {
+      const buttons = document.createElement("button");
+
+      buttons.textContent = city.name;
+      buttons.addEventListener("click", () => handleBtnClick(index));
+      pastSearch.appendChild(buttons);
+    });
+  }
+}
+
+// History Buttons
+function handleBtnClick(index) {
+  const cityRetrieval = localStorage.getItem("userInputData");
+
+  if (cities) {
+    const cities = JSON.parse(cityRetrieval);
+    const currentCity = cities[index];
+
+    getCity(currentCity);
+  }
+}
+
+// Fetch Weather Of City From API
 function getCity(currentCity) {
-  console.log(currentCity);
-  // GeoURL To Ask For The Weather For The City
+  // URL To Ask For The Forecast For The City In Imperial
   var userCityUrl =
     `https://api.openweathermap.org/data/2.5/forecast?q=` +
     currentCity +
     `&appid=` +
     APIkey +
-    `&units=imperial`;
-  var cityStorage = JSON.parse(localStorage.getItem("city"));
+    `&units=imperial`; // switch to metric for Celsius
 
   fetch(userCityUrl)
     .then(function (response) {
@@ -57,31 +75,43 @@ function getCity(currentCity) {
     })
     .then(function (data) {
       // weatherInfo(data);
-      console.log(data);
-      renderCurrentWeather(data);
-      renderPrediction(data);
+      // console.log(data);
+      showCurrentWeather(data);
+      showPrediction(data);
     });
   return;
 }
 
-function renderCurrentWeather(data) {
+// Show Current Data From API
+function showCurrentWeather(data) {
+  console.log(data);
   cityName.textContent = data.city.name;
+  date.textContent = data.list[0].dt_txt.substring(0, 10);
   cityTemp.textContent = data.list[0].main.temp;
   cityWind.textContent = data.list[0].wind.speed;
   cityHumidity.textContent = data.list[0].main.humidity;
 }
 
-function renderPrediction(data) {
+// Show Data For The Next 5 Days
+function showPrediction(data) {
   for (var i = 0; i <= data.list.length - 1; i = i + 8) {
-    console.log(i);
+    // console.log(i);
     console.log(data.list[i]);
-    var html = `          <section id="day1" class="card">
-    <p id="firstDay">Date</p>
-    <p class="text-top">Temp: ${data.list[i].main.temp} <span id="city-temp"></span> °F</p>
-    <p class="text-top">Wind: <span id="city-wind"></span> 12 MPH</p>
-    <p class="text-top">Humidity: <span id="city-humidity"></span>5 %
-    </p>
-  </section>`;
+    console.log(data.list[i].dt_text);
+
+    var html = `<section id="day1" class="card">
+    <p class="date">${data.list[i].dt_txt.substring(0, 10)}</p>
+    <p class="text-top">Temp: ${
+      data.list[i].main.temp
+    } <span id="city-temp"></span> °F</p>
+    <p class="text-top">Wind: ${
+      data.list[i].wind.speed
+    } <span id="city-wind"></span>  MPH</p>
+    <p class="text-top">Humidity: ${
+      data.list[i].main.humidity
+    } <span id="city-humidity"></span> %</p>
+    </section>`;
+
     predictions.insertAdjacentHTML("beforeend", html);
   }
 }
