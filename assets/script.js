@@ -4,7 +4,7 @@ var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 var userInput = document.getElementById("user-input");
 var searchBtn = document.querySelector("#search-button");
 var clearBtn = document.querySelector("#clear-button");
-var pastSearch = document.getElementById("past-cities");
+var pastSearch = document.getElementById("past-cities"); // IT WAS YOU!
 
 var cityName = document.getElementById("city-name");
 var date = document.getElementById("date");
@@ -23,16 +23,16 @@ function handleSearchFormSubmit(event) {
 
   if (userInputData) {
     const cities = JSON.parse(userInputData);
-    cities.push({ name: currentCity }); // error in dev tools, checked id and var...
+    cities.push({ name: currentCity }); // cities.push is not a function in dev tools
     localStorage.setItem("userInputData", JSON.stringify(cities));
   } else {
     localStorage.setItem(
       "userInputData",
-      JSON.stringify([{ name: currentCity }])
+      JSON.stringify([{ name: currentCity }]) // why so many?
     );
   }
-
   predictions.innerHTML = "";
+
   getCity(currentCity);
   pastSearches();
 }
