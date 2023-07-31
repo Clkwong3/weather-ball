@@ -25,8 +25,7 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   const currentCity = document.querySelector("#user-input").value;
-  localStorage.setItem("userInputData", currentCity);
-  currentCity.innerHTML = "";
+  localStorage.setItem("userInputData", JSON.stringify({ name: currentCity }));
   predictions.innerHTML = "";
 
   getCity(currentCity);
