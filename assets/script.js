@@ -6,7 +6,7 @@ var searchBtn = document.querySelector("#search-button");
 var clearBtn = document.querySelector("#clear-button");
 var pastSearch = document.getElementById("past-city");
 
-var cityName = document.getElementById("card-title");
+var cityName = document.getElementById("city-name");
 var date = document.getElementById("date");
 var cityTemp = document.getElementById("current-temp");
 var cityWind = document.getElementById("current-wind");
@@ -58,13 +58,15 @@ function handleBtnClick(index) {
 }
 
 // Clear History
-function wipedClean() {
+function handleHistoryClearSubmit(event) {
+  event.preventDefault();
+
   localStorage.removeItem("userObjectsData");
 
-  const dataContainer = document.getElementById("dataContainer");
-  dataContainer.innerHTML = "";
+  const pastCity = document.getElementById("past-city");
+  pastCity.innerHTML = "";
 }
-clearBtn.addEventListener("click", wipedClean);
+clearBtn.addEventListener("click", handleHistoryClearSubmit);
 
 // Fetch Weather Of City From API
 function getCity(currentCity) {
@@ -93,6 +95,8 @@ function showCurrentWeather(data) {
   // console.log(data);
   cityName.textContent = data.city.name;
   date.textContent = data.list[0].dt_txt.substring(0, 10);
+  console.log(date);
+  console.log(cityName);
   cityTemp.textContent = data.list[0].main.temp;
   cityWind.textContent = data.list[0].wind.speed;
   cityHumidity.textContent = data.list[0].main.humidity;

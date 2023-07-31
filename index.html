@@ -33,7 +33,7 @@
 
     <div class="container">
       <!-- Side Navigation-->
-      <nav class="col-3 m-2 bg-light" id="search-bar">
+      <nav class="nav-bar" id="search-bar">
         <!-- Search for City -->
         <form>
           <label class="text-dark">Search by City:</label>
@@ -43,38 +43,24 @@
             placeholder="City Name"
             id="user-input"
           />
-          <button
-            class="btn btn-outline-light bg-primary my-2"
-            style="width: 100%"
-            type="submit"
-            id="search-button"
-          >
-            SEARCH
-          </button>
+          <button class="search-button" id="search-button">SEARCH</button>
         </form>
 
         <!-- Clear Search History -->
-        <button
-          class="btn btn-outline-light bg-primary my-2"
-          style="width: 100%"
-          type="submit"
-          id="clear-button"
-        >
-          CLEAR HISTORY
-        </button>
+        <button class="clear-button" id="clear-button">CLEAR HISTORY</button>
 
         <!-- Show Past Searches -->
-        <div class="border-top border-secondary" id="past-cities">
-          <div class="card" id="past-city"></div>
-        </div>
+        <div class="past-city" id="past-cities"></div>
       </nav>
 
       <!-- City Forecast -->
-      <div class="col-8 m-2">
+      <div class="forecast-display">
         <!-- Today's Weather -->
-        <div class="card justify-content-start">
-          <h2 id="card-title">City</h2>
-          <h3 id="date">Date</h3>
+        <div class="card current-day">
+          <div class="card-title">
+            <h2 id="city-name">City</h2>
+            <h2 id="date">Date</h2>
+          </div>
           <p class="text-top">Temp: <span id="current-temp"></span> °F</p>
           <p class="text-top">Wind: <span id="current-wind"></span> MPH</p>
           <p class="text-top">Humidity: <span id="current-humidity"></span>%</p>
@@ -82,7 +68,7 @@
 
         <!-- 5 Day Predictions -->
         <div class="forecast d-flex justify-content-between">
-          <h4>5-Day Forecast</h4>
+          <h3>5-Day Forecast</h3>
         </div>
         <br />
         <div class="future-blocks" id="future-temps"></div>

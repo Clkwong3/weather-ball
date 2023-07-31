@@ -28,22 +28,59 @@ h1 {
   font-weight: 600;
 }
 
+.nav-bar {
+  width: 20%;
+  margin: 8px;
+  background-color: #f8f9fa;
+}
+
+/* ------- Buttons ------- */
+.search-button,
+.clear-button {
+  display: inline-block;
+  border: 2px solid #f8f9fa;
+  background-color: #007bff;
+  color: #f8f9fa;
+  padding: 8px 16px;
+  margin: 8px 0;
+  font-size: 15px;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.search-button:hover,
+.clear-button:hover {
+  background-color: #0096ff;
+  color: black;
+}
+
 /* ------- Past Searches ------- */
-.card {
-  column-width: auto;
+.past-city {
+  border-top: 2px solid black;
+}
+
+/* ------- Weather Forecast Display ------- */
+.forecast-display {
+  width: 75%;
 }
 
 /* ------- Current Day ------- */
-.justify-content-start {
-  margin: 1rem 2rem;
-  font-weight: 400;
+.current-day {
+  display: flex;
+  margin-left: 40px;
+  justify-content: flex-start;
 }
 
-h2,
-h3 {
-  display: inline;
+.card-title {
+  display: flex;
+}
+
+.card-title h2 {
   padding: 1%;
-  margin: 5px;
+  margin-left: 5px;
 }
 
 .text-top {
