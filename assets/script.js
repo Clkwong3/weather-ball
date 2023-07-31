@@ -36,6 +36,7 @@ searchBtn.addEventListener("click", handleSearchFormSubmit);
 // Display Search History
 function pastSearches() {
   const pastCities = localStorage.getItem("userInputData");
+  pastSearch.innerHTML = "";
 
   if (pastCities) {
     const cities = JSON.parse(pastCities);
@@ -56,7 +57,7 @@ function handleBtnClick(index) {
 
   if (cityRetrieval) {
     const cities = JSON.parse(cityRetrieval);
-    const currentCity = cities[index];
+    const currentCity = cities[index].name;
 
     getCity(currentCity);
   }
@@ -68,8 +69,7 @@ function handleHistoryClearSubmit(event) {
 
   localStorage.removeItem("userObjectsData");
 
-  const pastCity = document.getElementById("past-city");
-  pastCity.innerHTML = "";
+  pastSearches();
 }
 clearBtn.addEventListener("click", handleHistoryClearSubmit);
 
