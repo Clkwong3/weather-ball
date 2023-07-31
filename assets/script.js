@@ -76,18 +76,11 @@ clearBtn.addEventListener("click", handleHistoryClearSubmit);
 // Fetch Weather Of City From API
 function getCity(currentCity) {
   // URL To Ask For The Forecast For The City In Imperial
-  var userCityUrl =
-    `https://api.openweathermap.org/data/2.5/forecast?q=` +
-    currentCity +
-    `&appid=` +
-    APIkey +
-    `&units=imperial`; // switch to metric for Celsius
+  var userCityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${APIkey}&units=imperial`; // switch to metric for Celsius
 
   fetch(userCityUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
+    .then((response) => response.json())
+    .then((data) => {
       console.log(data);
       showCurrentWeather(data);
       showPrediction(data);
