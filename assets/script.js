@@ -4,7 +4,7 @@ var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 var userInput = document.getElementById("user-input");
 var searchBtn = document.querySelector("#search-button");
 var clearBtn = document.querySelector("#clear-button");
-var pastSearch = document.getElementById("past-city");
+var pastSearch = document.getElementById("past-cities");
 
 var cityName = document.getElementById("city-name");
 var date = document.getElementById("date");
@@ -18,10 +18,21 @@ var predictions = document.querySelector("#future-temps");
 function handleSearchFormSubmit(event) {
   event.preventDefault();
 
-  const currentCity = document.querySelector("#user-input").value;
-  localStorage.setItem("userInputData", JSON.stringify({ name: currentCity }));
-  predictions.innerHTML = "";
+  const currentCity = userInput.value;
+  const userInputData = localStorage.getItem("userInputData");
 
+  if (userInputData) {
+    const cities = JSON.parse(userInputData);
+    cities.push({ name: currentCity });
+    localStorage.setItem("userInputData", JSON.stringify(cities));
+  } else {
+    localStorage.setItem(
+      "userInputData",
+      JSON.stringify([{ name: currentCity }])
+    );
+  }
+
+  predictions.innerHTML = "";
   getCity(currentCity);
   pastSearches();
 }
@@ -61,7 +72,7 @@ function handleBtnClick(index) {
 function handleHistoryClearSubmit(event) {
   event.preventDefault();
 
-  localStorage.removeItem("userObjectsData");
+  localStorage.removeItem("userInputData");
 
   pastSearches();
 }
@@ -69,8 +80,7 @@ clearBtn.addEventListener("click", handleHistoryClearSubmit);
 
 // Fetch Weather Of City From API
 function getCity(currentCity) {
-  // URL To Ask For The Forecast For The City In Imperial
-  var userCityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${APIkey}&units=imperial`; // switch to metric for Celsius
+  var userCityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${APIkey}&units=imperial`;
 
   fetch(userCityUrl)
     .then((response) => response.json())
@@ -84,7 +94,6 @@ function getCity(currentCity) {
 
 // Show Current Data From API
 function showCurrentWeather(data) {
-  // console.log(data);
   cityName.textContent = data.city.name;
   date.textContent = data.list[0].dt_txt.substring(0, 10);
   cityTemp.textContent = data.list[0].main.temp;
@@ -95,10 +104,6 @@ function showCurrentWeather(data) {
 // Show Data For The Next 5 Days
 function showPrediction(data) {
   for (var i = 0; i <= data.list.length - 1; i = i + 8) {
-    // console.log(i);
-    // console.log(data.list[i]);
-    // console.log(data.list[i].dt_text);
-
     var html = `<section id="5Days" class="card col-3 m-1 d-inline-block bg-info">
     <p class="date p-2">${data.list[i].dt_txt.substring(0, 10)}</p>
     <p class="text-top">Temp: ${data.list[i].main.temp}°F</p>
@@ -109,3 +114,6 @@ function showPrediction(data) {
     predictions.insertAdjacentHTML("beforeend", html);
   }
 }
+
+// Call pastSearches initially to display search history if available
+pastSearches();
