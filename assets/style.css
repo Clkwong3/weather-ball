@@ -34,7 +34,7 @@ h1 {
   background-color: #f8f9fa;
 }
 
-/* ------- Buttons ------- */
+/* ------- Nav Buttons ------- */
 .search-button,
 .clear-button {
   display: inline-block;
@@ -60,6 +60,32 @@ h1 {
 /* ------- Past Searches ------- */
 .past-city {
   border-top: 2px solid black;
+}
+
+/* ------- City Buttons ------- */
+.past-city button {
+  display: block;
+  width: 100%;
+  margin: 5px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.past-city button:hover {
+  background-color: #0096ff;
+}
+
+.past-city button:active {
+  background-color: #0056b2;
+}
+
+.past-city button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 /* ------- Weather Forecast Display ------- */

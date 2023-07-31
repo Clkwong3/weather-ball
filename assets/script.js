@@ -23,9 +23,8 @@ function handleSearchFormSubmit(event) {
 
   if (userInputData) {
     const cities = JSON.parse(userInputData);
-    // please work, please work
     if (Array.isArray(cities)) {
-      cities.push({ name: currentCity });
+      cities.push({ name: currentCity }); // HA!
       localStorage.setItem("userInputData", JSON.stringify(cities));
     } else {
       localStorage.setItem(
