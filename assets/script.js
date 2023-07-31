@@ -23,9 +23,10 @@ function handleSearchFormSubmit(event) {
 
   if (userInputData) {
     const cities = JSON.parse(userInputData);
-
-    if (Array.isArray(cities)) {
-      cities.push({ name: currentCity }); // HA!
+    const existingCity = cities.find((city) => city.name === currentCity);
+    // Move to pastSearches()
+    if (!existingCity) {
+      cities.push({ name: currentCity });
       localStorage.setItem("userInputData", JSON.stringify(cities));
     }
   } else {
@@ -36,8 +37,8 @@ function handleSearchFormSubmit(event) {
   }
   predictions.innerHTML = "";
 
-  getCity(currentCity);
   pastSearches();
+  getCity(currentCity);
 }
 searchBtn.addEventListener("click", handleSearchFormSubmit);
 
@@ -49,13 +50,15 @@ function pastSearches() {
   if (pastCities) {
     const cities = JSON.parse(pastCities);
 
-    cities.forEach((userInputData, index) => {
-      const cityBtns = document.createElement("button");
+    if (Array.isArray(cities)) {
+      cities.forEach((userInputData, index) => {
+        const cityBtns = document.createElement("button");
 
-      cityBtns.textContent = userInputData.name;
-      cityBtns.addEventListener("click", () => handleBtnClick(index));
-      pastSearch.appendChild(cityBtns);
-    });
+        cityBtns.textContent = userInputData.name;
+        cityBtns.addEventListener("click", () => handleBtnClick(index));
+        pastSearch.appendChild(cityBtns);
+      });
+    }
   }
 }
 
