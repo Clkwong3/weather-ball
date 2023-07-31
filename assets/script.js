@@ -12,6 +12,12 @@ var cityTemp = document.getElementById("current-temp");
 var cityWind = document.getElementById("current-wind");
 var cityHumidity = document.getElementById("current-humidity");
 
+var section = document.getElementById("5Days");
+var fiveDates = document.getElementById("future-dates");
+var fiveTemp = document.getElementById("future-temp");
+var fiveWind = document.getElementById("future-wind");
+var fiveHumidity = document.getElementById("future-humidity");
+
 var predictions = document.querySelector("#future-temps");
 
 // Get City From User
@@ -83,7 +89,7 @@ function getCity(currentCity) {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
+      console.log(data);
       showCurrentWeather(data);
       showPrediction(data);
     });
@@ -95,8 +101,6 @@ function showCurrentWeather(data) {
   // console.log(data);
   cityName.textContent = data.city.name;
   date.textContent = data.list[0].dt_txt.substring(0, 10);
-  console.log(date);
-  console.log(cityName);
   cityTemp.textContent = data.list[0].main.temp;
   cityWind.textContent = data.list[0].wind.speed;
   cityHumidity.textContent = data.list[0].main.humidity;
@@ -109,19 +113,27 @@ function showPrediction(data) {
     // console.log(data.list[i]);
     // console.log(data.list[i].dt_text);
 
-    var html = `<section id="day1" class="card">
-    <p class="date">${data.list[i].dt_txt.substring(0, 10)}</p>
-    <p class="text-top">Temp: ${
-      data.list[i].main.temp
-    } <span id="city-temp"></span> °F</p>
-    <p class="text-top">Wind: ${
-      data.list[i].wind.speed
-    } <span id="city-wind"></span>  MPH</p>
-    <p class="text-top">Humidity: ${
-      data.list[i].main.humidity
-    } <span id="city-humidity"></span> %</p>
-    </section>`;
+    // var html = `<section id="5Days" class="card col-3 m-1 d-inline-block bg-info">
+    // <p class="date p-2">${data.list[i].dt_txt.substring(0, 10)}</p>
+    // <p class="text-top">Temp: ${data.list[i].main.temp}°F</p>
+    // <p class="text-top">Wind: ${data.list[i].wind.speed}MPH</p>
+    // <p class="text-top">Humidity: ${data.list[i].main.humidity}%</p>
+    // </section>`;
 
-    predictions.insertAdjacentHTML("beforeend", html);
+    // predictions.insertAdjacentHTML("beforeend", html);
+
+    fiveDates.textContent = data.dt_txt.substring(0, 10);
+    section.appendChild(fiveDates);
+
+    fiveTemp.textContent = `Temp: ${data.main.temp}°F`;
+    section.appendChild(fiveTemp);
+
+    fiveWind.textContent = `Wind: ${data.wind.speed}MPH`;
+    section.appendChild(fiveWind);
+
+    fiveHumidity.textContent = `Humidity: ${data.main.humidity}%`;
+    section.appendChild(fiveHumidity);
+
+    predictions.appendChild(section);
   }
 }

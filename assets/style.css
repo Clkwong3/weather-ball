@@ -5,7 +5,7 @@ body {
 /* ------- Header ------- */
 .title {
   padding: 5px;
-  background-color: #010057;
+  background-image: linear-gradient(to left, #004999, #ffd271);
 }
 
 h1 {
@@ -78,30 +78,40 @@ h1 {
   display: flex;
 }
 
-.card-title h2 {
-  padding: 1%;
-  margin-left: 5px;
-}
-
+.card-title h2,
 .text-top {
   padding: 1%;
   margin: 5px;
+  font-weight: bold;
 }
 
 /* ------- Predictions ------- */
-.forecast {
-  margin-left: 4%;
+.forecast-predictions {
+  display: flex;
+  padding: 8px 16px;
+  margin-left: 25px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+h3 {
+  font-weight: bold;
 }
 
 .future-blocks {
+  display: flex;
+  margin-left: 40px;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 /* ------- Footer ------- */
 footer {
   display: flex;
-  justify-content: center;
   margin-top: 20px;
   padding: 10px;
+  justify-content: center;
+  text-align: center;
 }
