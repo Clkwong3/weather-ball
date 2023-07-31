@@ -19,6 +19,11 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
 
   const currentCity = userInput.value;
+
+  if (!currentCity) {
+    return;
+  }
+
   const userInputData = localStorage.getItem("userInputData");
 
   if (userInputData) {
@@ -52,6 +57,8 @@ function pastSearches() {
     const cities = JSON.parse(pastCities);
 
     if (Array.isArray(cities)) {
+      cities.reverse;
+
       cities.forEach((userInputData, index) => {
         const cityBtns = document.createElement("button");
 
@@ -105,10 +112,28 @@ function formatDateLetters(lettersString) {
   return new Date(lettersString).toLocaleDateString(undefined, options);
 }
 
+// Show the Current Weather Icon
+function showSkyIcon(data) {
+  const iconCode = data.list[0].weather[0].icon;
+  const skyIconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+  const currentSkyIconEl = document.createElement("img");
+  const existingSkyIcon = document.getElementById("weather-icon-img");
+
+  currentSkyIconEl.setAttribute("id", "weather-icon-img");
+  currentSkyIconEl.setAttribute("src", skyIconUrl);
+
+  if (existingSkyIcon) {
+    existingSkyIcon.remove();
+  }
+
+  document.getElementById("weather-icon").appendChild(currentSkyIconEl);
+}
+
 // Show Current Data From API
 function showCurrentWeather(data) {
   cityName.textContent = data.city.name;
-  date.textContent = formatDateLetters(data.list[0].dt_txt.substring(0, 10));
+  (date.textContent = formatDateLetters(data.list[0].dt_txt.substring(0, 10))),
+    showSkyIcon(data);
   cityTemp.textContent = data.list[0].main.temp;
   cityWind.textContent = data.list[0].wind.speed;
   cityHumidity.textContent = data.list[0].main.humidity;
@@ -120,13 +145,28 @@ function formatDateNum(numString) {
   return new Date(numString).toLocaleDateString(undefined, options);
 }
 
+// Show the Future Weather Icon
+function displaySkyImg(data, i) {
+  const iconCode = data.list[i].weather[0].icon;
+  const skyImgUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+  const futureSkyImgEl = document.createElement("img");
+
+  futureSkyImgEl.setAttribute("src", skyImgUrl);
+  return futureSkyImgEl;
+}
+
 // Show Data For The Next 5 Days
 function showPrediction(data) {
+  predictions.innerHTML = "";
+
   for (var i = 0; i <= data.list.length - 1; i = i + 8) {
-    var html = `<section id="5Days" class="card col-3 m-1 d-inline-block bg-info">
-    <p class="date p-2">${formatDateNum(
+    var html = `<section id="FiveDays" class="card col-3 m-1 d-inline-block bg-info">
+    <h4 class="date p-2">${formatDateNum(
       data.list[i].dt_txt.substring(0, 10)
-    )}</p>
+    )}</h4>
+    <div class="weather-icon-container">${
+      displaySkyImg(data, i).outerHTML
+    }</div>
     <p class="text-top">Temp: ${data.list[i].main.temp}°F</p>
     <p class="text-top">Wind: ${data.list[i].wind.speed}MPH</p>
     <p class="text-top">Humidity: ${data.list[i].main.humidity}%</p>
