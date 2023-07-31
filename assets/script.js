@@ -167,9 +167,9 @@ function showPrediction(data) {
     <div class="weather-icon-container">${
       displaySkyImg(data, i).outerHTML
     }</div>
-    <p class="text-top">Temp: ${data.list[i].main.temp}°F</p>
-    <p class="text-top">Wind: ${data.list[i].wind.speed}MPH</p>
-    <p class="text-top">Humidity: ${data.list[i].main.humidity}%</p>
+    <p class="text-top">Temp: ${data.list[i].main.temp} °F</p>
+    <p class="text-top">Wind: ${data.list[i].wind.speed} MPH</p>
+    <p class="text-top">Humidity: ${data.list[i].main.humidity} %</p>
     </section>`;
 
     predictions.insertAdjacentHTML("beforeend", html);
