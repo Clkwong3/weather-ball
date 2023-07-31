@@ -70,13 +70,16 @@ function pastSearches() {
   }
 }
 
+
 // History Buttons
 function handleBtnClick(index) {
   const cityRetrieval = localStorage.getItem("userInputData");
 
   if (cityRetrieval) {
     const cities = JSON.parse(cityRetrieval);
-    const currentCity = cities[index].name;
+    const reversedCities = cities.slice().reverse();
+
+    const currentCity = reversedCities[index].name;
 
     getCity(currentCity);
   }
