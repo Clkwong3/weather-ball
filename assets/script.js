@@ -4,7 +4,7 @@ var APIkey = "bfd9e7606a4c20b7da2609119a710775";
 var userInput = document.getElementById("user-input");
 var searchBtn = document.querySelector("#search-button");
 var clearBtn = document.querySelector("#clear-button");
-var pastSearch = document.getElementById("past-cities"); // IT WAS YOU!
+var pastSearch = document.getElementById("past-cities");
 
 var cityName = document.getElementById("city-name");
 var date = document.getElementById("date");
@@ -70,7 +70,6 @@ function pastSearches() {
   }
 }
 
-
 // History Buttons
 function handleBtnClick(index) {
   const cityRetrieval = localStorage.getItem("userInputData");
@@ -94,16 +93,51 @@ function handleHistoryClearSubmit(event) {
 }
 clearBtn.addEventListener("click", handleHistoryClearSubmit);
 
+// Set The Width Of Model
+function setModalWidth(width) {
+  const modalContent = document.querySelector(".modal-content");
+  modalContent.style.width = width + "px";
+}
+
+// Show Modal With Error Message
+function showErrorModal(errorMessage) {
+  const modal = document.getElementById("errorModal");
+  const errorText = document.getElementById("errorText");
+
+  errorText.textContent = errorMessage;
+  modal.style.display = "flex"; // Appears Only When There's A Error
+
+  const errorMessageLength = errorMessage.length;
+  const maxWidth = 500;
+  const calcWidth = Math.min(maxWidth, errorMessageLength * 12);
+  setModalWidth(calcWidth);
+}
+
+// Close The Modal
+function closeModal() {
+  const modal = document.getElementById("errorModal");
+  modal.style.display = "none";
+}
+
 // Fetch Weather Of City From API
 function getCity(currentCity) {
   var userCityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${APIkey}&units=imperial`;
 
   fetch(userCityUrl)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("City not found. Please try again.");
+      }
+      return response.json();
+    })
     .then((data) => {
       console.log(data);
       showCurrentWeather(data);
       showPrediction(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      showErrorModal(error.message);
     });
   return;
 }
@@ -130,6 +164,7 @@ function showSkyIcon(data) {
   }
 
   document.getElementById("weather-icon").appendChild(currentSkyIconEl);
+  closeModal();
 }
 
 // Show Current Data From API
