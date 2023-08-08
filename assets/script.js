@@ -1,18 +1,18 @@
-var APIkey = "bfd9e7606a4c20b7da2609119a710775";
+const APIkey = "bfd9e7606a4c20b7da2609119a710775";
 
 // DOM EL
-var userInput = document.getElementById("user-input");
-var searchBtn = document.querySelector("#search-button");
-var clearBtn = document.querySelector("#clear-button");
-var pastSearch = document.getElementById("past-cities");
+const userInput = document.getElementById("user-input");
+const searchBtn = document.querySelector("#search-button");
+const clearBtn = document.querySelector("#clear-button");
+const pastSearch = document.getElementById("past-cities");
 
-var cityName = document.getElementById("city-name");
-var date = document.getElementById("date");
-var cityTemp = document.getElementById("current-temp");
-var cityWind = document.getElementById("current-wind");
-var cityHumidity = document.getElementById("current-humidity");
+const cityName = document.getElementById("city-name");
+const date = document.getElementById("date");
+const cityTemp = document.getElementById("current-temp");
+const cityWind = document.getElementById("current-wind");
+const cityHumidity = document.getElementById("current-humidity");
 
-var predictions = document.querySelector("#future-temps");
+const predictions = document.querySelector("#future-temps");
 
 // Get City From User
 function handleSearchFormSubmit(event) {
@@ -110,6 +110,7 @@ function showErrorModal(errorMessage) {
   const errorMessageLength = errorMessage.length;
   const maxWidth = 500;
   const calcWidth = Math.min(maxWidth, errorMessageLength * 12);
+
   setModalWidth(calcWidth);
 }
 
@@ -119,9 +120,9 @@ function closeModal() {
   modal.style.display = "none";
 }
 
-// Fetch Weather Of City From API
+// Retrieve Weather Forecast Data From API
 function getCity(currentCity) {
-  var userCityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${APIkey}&units=imperial`;
+  const userCityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${currentCity}&appid=${APIkey}&units=imperial`;
 
   fetch(userCityUrl)
     .then((response) => {
@@ -152,7 +153,7 @@ function formatDateLetters(lettersString) {
 // Show the Current Weather Icon
 function showSkyIcon(data) {
   const iconCode = data.list[0].weather[0].icon;
-  const skyIconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+  const skyIconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
   const currentSkyIconEl = document.createElement("img");
   const existingSkyIcon = document.getElementById("weather-icon-img");
 
@@ -186,7 +187,7 @@ function formatDateNum(numString) {
 // Show the Future Weather Icon
 function displaySkyImg(data, i) {
   const iconCode = data.list[i].weather[0].icon;
-  const skyImgUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+  const skyImgUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
   const futureSkyImgEl = document.createElement("img");
 
   futureSkyImgEl.setAttribute("src", skyImgUrl);
@@ -197,20 +198,39 @@ function displaySkyImg(data, i) {
 function showPrediction(data) {
   predictions.innerHTML = "";
 
-  for (var i = 0; i <= data.list.length - 1; i = i + 8) {
-    var html = `<section id="FiveDays" class="card col-3 m-1 d-inline-block bg-info">
-    <h4 class="date p-2">${formatDateNum(
-      data.list[i].dt_txt.substring(0, 10)
-    )}</h4>
-    <div class="weather-icon-container">${
-      displaySkyImg(data, i).outerHTML
-    }</div>
-    <p class="text-top">Temp: ${data.list[i].main.temp} °F</p>
-    <p class="text-top">Wind: ${data.list[i].wind.speed} MPH</p>
-    <p class="text-top">Humidity: ${data.list[i].main.humidity} %</p>
-    </section>`;
+  for (let i = 0; i <= data.list.length - 1; i = i + 8) {
+    const section = document.createElement("section");
+    section.id = "FiveDays";
+    section.className = "card col-3 m-1 d-inline-block bg-info";
 
-    predictions.insertAdjacentHTML("beforeend", html);
+    const dateHeading = document.createElement("h4");
+    dateHeading.className = "date p-2";
+    dateHeading.textContent = formatDateNum(
+      data.list[i].dt_txt.substring(0, 10)
+    );
+    section.appendChild(dateHeading);
+
+    const weatherIconContainer = document.createElement("div");
+    weatherIconContainer.className = "weather-icon-container";
+    weatherIconContainer.appendChild(displaySkyImg(data, i));
+    section.appendChild(weatherIconContainer);
+
+    const tempParagraph = document.createElement("p");
+    tempParagraph.className = "text-top";
+    tempParagraph.textContent = `Temp: ${data.list[i].main.temp} °F`;
+    section.appendChild(tempParagraph);
+
+    const windParagraph = document.createElement("p");
+    windParagraph.className = "text-top";
+    windParagraph.textContent = `Wind: ${data.list[i].wind.speed} MPH`;
+    section.appendChild(windParagraph);
+
+    const humidityParagraph = document.createElement("p");
+    humidityParagraph.className = "text-top";
+    humidityParagraph.textContent = `Humidity: ${data.list[i].main.humidity} %`;
+    section.appendChild(humidityParagraph);
+
+    predictions.appendChild(section);
   }
 }
 
